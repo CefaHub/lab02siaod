@@ -154,7 +154,7 @@ class DynamicArray:
         """Увеличить ёмкость в 2 раза и скопировать элементы в новый буфер."""
         # Создание буфера и копирование существующих элементов.
         # увеличить self.copies на число перенесённых элементов
-                new_capacity = self._capacity * 2
+        new_capacity = self._capacity * 2
         new_buffer = [None] * new_capacity
         for index in range(self._size):
             new_buffer[index] = self._buffer[index]
@@ -168,7 +168,7 @@ class DynamicArray:
         Амортизированная сложность O(1), отдельный рост — O(n).
         """
         # Увеличение ёмкости при необходимости и запись в свободную ячейку.
-                if self._size == self._capacity:
+        if self._size == self._capacity:
             self._grow()
         self._buffer[self._size] = value
         self._size += 1
@@ -184,7 +184,7 @@ class DynamicArray:
         """
         # Проверка пустоты, извлечение последнего элемента и очистка ячейки.
         # (None — чтобы буфер не удерживал объект), декремент _size
-                if self._size == 0:
+        if self._size == 0:
             raise IndexError("pop из пустого динамического массива")
         index = self._size - 1
         value = self._buffer[index]
@@ -195,14 +195,14 @@ class DynamicArray:
     def get(self, index: int):
         """Вернуть элемент по индексу 0 <= index < size; иначе IndexError."""
         # Проверка индекса и чтение из буфера.
-                if index < 0 or index >= self._size:
+        if index < 0 or index >= self._size:
             raise IndexError("индекс вне границ динамического массива")
         return self._buffer[index]
 
     def set(self, index: int, value) -> None:
         """Записать элемент по индексу 0 <= index < size; иначе IndexError."""
         # Проверка индекса и запись в буфер.
-                if index < 0 or index >= self._size:
+        if index < 0 or index >= self._size:
             raise IndexError("индекс вне границ динамического массива")
         self._buffer[index] = value
 
@@ -224,18 +224,18 @@ class Stack:
     def push(self, value) -> None:
         """Положить элемент на вершину. Амортизированная сложность O(1)."""
         # Делегирование операции динамическому массиву.
-                self._data.append(value)
+        self._data.append(value)
 
     def pop(self):
         """Снять элемент с вершины; для пустого стека — IndexError."""
         # Делегирование операции динамическому массиву.
-                return self._data.pop()
+        return self._data.pop()
 
     def peek(self):
         """Вернуть вершину без удаления; для пустого стека — IndexError."""
         # Проверка пустоты и чтение вершины.
         # иначе DynamicArray.get(len - 1)
-                if len(self._data) == 0:
+        if len(self._data) == 0:
             raise IndexError("peek у пустого стека")
         return self._data.get(len(self._data) - 1)
 
@@ -269,7 +269,7 @@ class Deque:
     def push_front(self, value) -> None:
         """Добавить элемент в начало. Сложность O(1)."""
         # Создание узла и обновление ссылок головы.
-                node = _Node(value, None, self._head)
+        node = _Node(value, None, self._head)
         if self._head is None:
             self._tail = node
         else:
@@ -280,7 +280,7 @@ class Deque:
     def push_back(self, value) -> None:
         """Добавить элемент в конец. Сложность O(1)."""
         # Создание узла и обновление ссылок хвоста.
-                node = _Node(value, self._tail, None)
+        node = _Node(value, self._tail, None)
         if self._tail is None:
             self._head = node
         else:
@@ -291,7 +291,7 @@ class Deque:
     def pop_front(self):
         """Извлечь элемент из начала; для пустого дека — IndexError."""
         # Извлечение узла и обновление головы/хвоста.
-                if self._head is None:
+        if self._head is None:
             raise IndexError("pop_front у пустого дека")
         node = self._head
         self._head = node.next
@@ -307,7 +307,7 @@ class Deque:
     def pop_back(self):
         """Извлечь элемент из конца; для пустого дека — IndexError."""
         # Извлечение узла и обновление хвоста/головы.
-                if self._tail is None:
+        if self._tail is None:
             raise IndexError("pop_back у пустого дека")
         node = self._tail
         self._tail = node.prev
