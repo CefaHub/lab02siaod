@@ -58,7 +58,7 @@ CALLS = {"fib_naive": 0, "fib_memo": 0}  # счётчики рекурсивны
 def factorial(n: int) -> int:
     """Факториал n >= 0 рекурсивно. Время O(n), глубина рекурсии O(n) (обосновать в отчёте)."""
     # Базовый случай и рекурсивный переход реализованы ниже.
-        if n < 0:
+    if n < 0:
         raise ValueError("n должен быть неотрицательным")
     if n in (0, 1):
         return 1
@@ -72,7 +72,7 @@ def fib_naive(n: int) -> int:
     """
     CALLS["fib_naive"] += 1
     # Рекуррентный переход реализован ниже.
-        if n < 0:
+    if n < 0:
         raise ValueError("n должен быть неотрицательным")
     if n < 2:
         return n
@@ -86,7 +86,7 @@ def fib_memo(n: int, memo: dict[int, int] | None = None) -> int:
     """
     CALLS["fib_memo"] += 1
     # Кэш передаётся по рекурсивным вызовам.
-        if n < 0:
+    if n < 0:
         raise ValueError("n должен быть неотрицательным")
     if memo is None:
         memo = {}
@@ -110,7 +110,7 @@ def hanoi(n: int, src: str = "A", dst: str = "C", aux: str = "B",
     """
     # Рекурсивное разбиение задачи на три шага.
     # (moves передаётся во все рекурсивные вызовы)
-        if n < 0:
+    if n < 0:
         raise ValueError("число дисков должно быть неотрицательным")
     if n == 0:
         return 0
